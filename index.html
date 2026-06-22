@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktyka 7 — Чим займаєшся?</title>
+<style>
+  :root {
+    --website-blue: #0057B7;
+    --website-blue-dark: #004494;
+    --website-blue-pale: #EAF3FF;
+    --website-yellow: #FFD500;
+    --website-yellow-soft: #FFF3A6;
+    --website-yellow-pale: #FFF9D9;
+    --website-teal: #0B8EA3;
+
+    --warm-page: #F4F2EC;
+    --warm-card: #FFFFFF;
+    --warm-card-2: #F8F6F0;
+
+    --ink: #073A73;
+    --muted: #4D4D4D;
+    --line: #8CB4E8;
+
+    --berry: var(--website-blue);
+    --rose: var(--website-blue);
+    --cream: var(--warm-page);
+    --gold: var(--website-yellow);
+    --gold-pale: var(--website-yellow-pale);
+    --green-ok: var(--website-blue-dark);
+    --green-pale: var(--website-blue-pale);
+
+    --header-font: Arial, Helvetica, sans-serif;
+    --body-font: Arial, Helvetica, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body-font);
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 30px 24px 60px; }
+
+  /* HEADER */
+  header.intro {
+    background: var(--website-blue);
+    color: white;
+    padding: 36px 32px;
+    border-radius: 0 0 14px 14px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 0 var(--website-yellow);
+  }
+  header.intro::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 8px; height: 50%; background: var(--website-teal);
+  }
+  header.intro::after {
+    content: ''; position: absolute; top: 50%; left: 0;
+    width: 8px; height: 50%; background: var(--website-yellow);
+  }
+  header.intro .kicker {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--website-yellow); font-weight: 700; margin-bottom: 10px;
+  }
+  header.intro h1 { font-size: 38px; line-height: 1.1; margin-bottom: 8px; }
+  header.intro .subtitle {
+    font-style: italic; font-size: 18px;
+    color: rgba(255,255,255,0.85); margin-bottom: 20px;
+  }
+  header.intro .meta {
+    display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    border-top: 1px solid rgba(255,255,255,0.2); padding-top: 14px;
+  }
+  header.intro .meta strong { color: var(--website-yellow); font-weight: 600; }
+
+  /* LEAD */
+  .lead-blurb {
+    background: white;
+    border-left: 4px solid var(--berry);
+    padding: 18px 24px;
+    border-radius: 8px;
+    margin-bottom: 28px;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .lead-blurb strong { color: var(--berry); font-style: normal; font-weight: 700; }
+
+  /* GRAMMAR THEORY */
+  .theory {
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 30px;
+    margin-bottom: 30px;
+  }
+  .theory h2 {
+    font-size: 26px; color: var(--ink);
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--website-yellow);
+  }
+  .theory h3 {
+    font-size: 19px; color: var(--berry);
+    margin-top: 22px; margin-bottom: 10px;
+  }
+  .theory p { margin-bottom: 10px; line-height: 1.65; }
+  .theory .uk { font-weight: 700; color: var(--ink); }
+  .theory ul { margin: 8px 0 12px 22px; }
+  .theory li { margin-bottom: 6px; line-height: 1.6; }
+  .theory table {
+    width: 100%; border-collapse: collapse;
+    margin: 12px 0; background: var(--warm-card-2);
+    border-radius: 6px; overflow: hidden;
+  }
+  .theory th, .theory td {
+    border: 1px solid var(--line);
+    padding: 9px 12px; text-align: left; font-size: 15px;
+  }
+  .theory th { background: var(--website-blue-pale); color: var(--ink); }
+  .theory .pron {
+    display: inline-block; background: var(--gold-pale);
+    border: 1px solid var(--website-yellow);
+    border-radius: 999px; padding: 1px 8px;
+    font-size: 13px; color: var(--muted); white-space: nowrap;
+  }
+  .theory .tip-mini {
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px; margin: 12px 0;
+    border-radius: 0 6px 6px 0; font-size: 14px;
+  }
+
+  /* TASK */
+  .task {
+    background: var(--warm-card);
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 26px 28px;
+    margin-bottom: 22px;
+  }
+  .task-header {
+    display: flex; align-items: flex-start; gap: 18px;
+    margin-bottom: 16px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .task-num {
+    background: var(--website-yellow); color: #000;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800; flex-shrink: 0;
+  }
+  .task-title-box { flex: 1; }
+  .task-title-box h2 { font-size: 21px; color: var(--ink); margin-bottom: 4px; line-height: 1.2; }
+  .task-title-box .uk-title {
+    font-size: 14px; color: var(--rose); font-style: italic;
+  }
+  .task-meta {
+    display: flex; gap: 12px; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-top: 6px; flex-wrap: wrap;
+  }
+  .task-meta .pill {
+    background: var(--website-yellow); color: #000;
+    padding: 3px 10px; border-radius: 12px; font-weight: 600;
+  }
+  .task-instruction {
+    color: var(--ink); margin-bottom: 14px; line-height: 1.55;
+    font-size: 15px;
+  }
+  .task-instruction .uk-inst {
+    display: block; color: var(--rose);
+    font-style: italic; font-size: 14px; margin-top: 2px;
+  }
+  .task-instruction strong { color: var(--berry); }
+
+  /* MODEL */
+  .model {
+    background: var(--warm-card-2);
+    border-left: 4px solid var(--website-yellow);
+    border-radius: 8px;
+    padding: 12px 16px; margin-bottom: 14px;
+    font-size: 14px;
+  }
+  .model .label {
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--berry);
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .model .uk-text { font-weight: 700; font-size: 16px; color: var(--ink); }
+  .model .no-text { font-style: italic; color: var(--muted); margin-top: 3px; }
+
+  /* EXERCISES */
+  .exercise { margin-top: 10px; }
+  .ex-row {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 9px 0; border-bottom: 1px dashed var(--line); flex-wrap: wrap;
+  }
+  .ex-row:last-child { border-bottom: none; }
+  .ex-num {
+    color: var(--rose); font-weight: 700;
+    font-size: 14px; min-width: 22px;
+  }
+  .ex-prompt { flex: 1; min-width: 200px; font-size: 16px; line-height: 1.5; }
+  .ex-prompt .uk { font-weight: 700; color: var(--ink); }
+  .ex-prompt em { color: var(--muted); font-size: 13px; font-style: italic; }
+
+  input[type="text"] {
+    border: none; border-bottom: 2px solid var(--website-blue);
+    background: transparent; font-size: 16px; color: var(--ink);
+    padding: 4px 6px; min-width: 130px; outline: none;
+    transition: background 0.2s;
+  }
+  input[type="text"]:focus {
+    background: var(--website-yellow-pale);
+    border-bottom-color: var(--website-yellow);
+  }
+  input[type="text"].short { min-width: 50px; max-width: 80px; text-align: center; }
+  input[type="text"].long { min-width: 220px; }
+
+  /* TABLE LAYOUTS */
+  table.task-table {
+    width: 100%; border-collapse: collapse;
+    margin: 10px 0; background: white;
+  }
+  table.task-table th, table.task-table td {
+    border: 1px solid var(--line);
+    padding: 9px 11px; vertical-align: middle; text-align: left;
+  }
+  table.task-table th {
+    background: var(--website-blue-pale);
+    color: var(--ink); font-size: 14px;
+  }
+  table.task-table .uk { font-weight: 700; color: var(--ink); }
+
+  /* SORT TWO COL */
+  .sort-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 10px;
+  }
+  .sort-col {
+    background: var(--warm-card-2);
+    border: 1px solid var(--line);
+    border-radius: 8px; padding: 12px;
+  }
+  .sort-col h4 {
+    font-size: 16px; color: var(--berry);
+    margin-bottom: 8px; padding-bottom: 5px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sort-col textarea {
+    width: 100%; border: none; background: transparent;
+    font-family: var(--body-font); font-size: 15px;
+    color: var(--ink); min-height: 90px; resize: vertical;
+    outline: none;
+  }
+
+  .word-bank {
+    background: var(--gold-pale);
+    border: 1px dashed var(--gold);
+    border-radius: 8px; padding: 12px 14px;
+    margin: 10px 0; font-size: 15px;
+    line-height: 1.9;
+  }
+  .word-bank .pill {
+    display: inline-block; background: white;
+    border: 1px solid var(--website-blue);
+    color: var(--ink); border-radius: 999px;
+    padding: 3px 10px; margin: 2px; font-weight: 700;
+  }
+
+  /* DIALOG */
+  .dialog-box {
+    background: var(--warm-card-2);
+    border-radius: 8px; padding: 16px 20px; margin-top: 10px;
+  }
+  .dialog-line {
+    display: grid; grid-template-columns: 50px 1fr;
+    gap: 10px; align-items: baseline; padding: 5px 0;
+  }
+  .dialog-who {
+    font-size: 11px; font-weight: 700; color: var(--berry);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .dialog-who.b { color: var(--website-teal); }
+  .dialog-text { font-size: 16px; color: var(--ink); }
+  .dialog-text em {
+    display: block; font-size: 12px; color: var(--muted);
+    font-style: italic; margin-top: 2px;
+  }
+
+  /* TIP */
+  .tip-box {
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    padding: 11px 16px; border-radius: 0 6px 6px 0;
+    margin-top: 12px; font-size: 13px;
+    color: var(--ink); line-height: 1.55;
+  }
+  .tip-box strong { color: var(--berry); }
+
+
+  /* AUDIO */
+  .audio-box {
+    background: var(--website-blue-pale);
+    border: 1.5px solid var(--line);
+    border-left: 5px solid var(--website-yellow);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 14px 0 18px;
+  }
+  .audio-box .audio-title {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--website-blue-dark);
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .audio-box p {
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .audio-box audio {
+    width: 100%;
+    display: block;
+  }
+
+  /* ANSWER KEY */
+  .answer-key-toggle {
+    margin-top: 14px; padding: 8px 14px;
+    background: white; border: 1.5px solid var(--website-blue);
+    color: var(--website-blue); border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .answer-key-toggle:hover {
+    background: var(--website-blue); color: white;
+  }
+  .answer-key {
+    display: none; margin-top: 12px; padding: 14px 18px;
+    background: var(--website-blue-pale);
+    border-left: 3px solid var(--website-yellow);
+    border-radius: 0 6px 6px 0; font-size: 14px;
+    line-height: 1.7; color: var(--ink);
+  }
+  .answer-key.shown { display: block; }
+  .answer-key strong { color: var(--website-blue-dark); }
+  .answer-key code {
+    background: white; padding: 1px 6px;
+    border-radius: 3px; font-style: italic;
+    font-family: var(--body-font);
+  }
+
+  /* VOCABULARY */
+  .vocab {
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 26px 28px; margin-top: 30px;
+  }
+  .vocab h2 {
+    font-size: 26px; color: var(--ink);
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--website-yellow);
+  }
+  .vocab h3 {
+    font-size: 20px; color: var(--berry);
+    margin-top: 22px; margin-bottom: 10px;
+  }
+  .vocab table {
+    width: 100%; border-collapse: collapse;
+    background: white; margin-top: 8px;
+  }
+  .vocab th, .vocab td {
+    border: 1px solid var(--line);
+    padding: 8px 11px; text-align: left;
+    font-size: 14px;
+  }
+  .vocab th {
+    background: var(--website-blue-pale);
+    color: var(--ink); font-weight: 700;
+  }
+  .vocab td.uk { font-weight: 700; color: var(--ink); }
+  .vocab td.kjonn {
+    text-align: center; font-weight: 700;
+    color: var(--berry); width: 90px;
+  }
+  .vocab td.kjonn.m { color: #0057B7; }
+  .vocab td.kjonn.f { color: #C2185B; }
+  .vocab td.kjonn.n { color: #00897B; }
+  .vocab td.kjonn.pl { color: #6A1B9A; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 36px; padding: 24px;
+    background: var(--website-blue); color: white;
+    border-radius: 12px; text-align: center;
+    border-top: 8px solid var(--website-yellow);
+  }
+  footer .mantra {
+    font-style: italic; font-size: 18px;
+    color: var(--website-yellow); margin-bottom: 6px;
+  }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+  /* FLOATING KEYBOARD */
+  .floating-keyboard {
+    position: fixed; right: 18px; bottom: 18px; z-index: 9999;
+  }
+  .keyboard-toggle {
+    background: var(--website-blue); color: white; border: none;
+    border-radius: 24px; padding: 10px 16px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  }
+  .keyboard-toggle:hover { background: var(--website-blue-dark); }
+  .keyboard-panel {
+    display: none; margin-top: 10px; background: white;
+    border: 2px solid var(--website-blue);
+    border-radius: 14px; padding: 12px; max-width: 470px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  }
+  .keyboard-panel.open { display: block; }
+  .keyboard-help {
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 8px; line-height: 1.4;
+  }
+  .keyboard-row { display: flex; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+  .keyboard-row:last-child { margin-bottom: 0; }
+  .keyboard-row button {
+    min-width: 34px; min-height: 34px;
+    border: 1px solid var(--line);
+    background: var(--website-yellow-pale);
+    color: var(--ink); border-radius: 8px;
+    font-size: 17px; font-weight: 700; cursor: pointer;
+  }
+  .keyboard-row button:hover { background: var(--website-yellow); }
+  .keyboard-row button.keyboard-wide { min-width: 72px; font-size: 14px; }
+
+  @media print {
+    .floating-keyboard { display: none !important; }
+    .answer-key-toggle { display: none; }
+    .answer-key { display: none !important; }
+    .task { page-break-inside: avoid; box-shadow: none; }
+    body { background: white; }
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 16px 12px 40px; }
+    header.intro { padding: 24px 20px; }
+    header.intro h1 { font-size: 28px; }
+    .task, .theory, .vocab { padding: 20px 18px; }
+    .task-title-box h2 { font-size: 18px; }
+    .sort-grid { grid-template-columns: 1fr; }
+    .floating-keyboard { left: 10px; right: 10px; bottom: 10px; }
+    .keyboard-panel { max-width: 100%; max-height: 45vh; overflow-y: auto; }
+  }
+
+  /* SFL fargemetode */
+  .hvem { color:#C0392B; font-weight:700; }
+  .hva  { color:#1E8449; font-weight:700; }
+  .obj  { color:#7B2D8E; font-weight:700; }
+  .nar  { color:#1565C0; font-weight:700; }
+  .sfl-legend { display:flex; flex-wrap:wrap; gap:16px; margin:14px 0; padding:12px 16px; background:var(--website-blue-pale); border-radius:10px; }
+  .sfl-legend .item { display:flex; flex-direction:column; gap:2px; }
+  .sfl-legend .q { font-weight:700; font-size:14px; }
+  .sfl-legend .q.hvem{color:#C0392B;} .sfl-legend .q.hva{color:#1E8449;} .sfl-legend .q.obj{color:#7B2D8E;}
+  .sfl-legend .gloss { font-size:11px; font-style:italic; color:var(--muted); }
+</style>
+<body>
+
+<div class="wrap">
+
+<!-- HEADER -->
+<header class="intro">
+  <div class="kicker">Praktyka · Øving</div>
+  <h1>Чим займаєшся?</h1>
+  <div class="subtitle">Planer, fritid og uttrykket «я планую + infinitiv»</div>
+  <div class="meta">
+    <span><strong>Tid:</strong> ca. 45–60 minutter</span>
+    <span><strong>Tema:</strong> planer, fritid, spørsmål og svar</span>
+  </div>
+</header>
+
+<!-- LEAD -->
+<div class="lead-blurb">
+  I denne øvingen jobber du med spørsmål og svar om planer og fritid. Du skal bruke uttrykkene <span class="uk">Що робиш?</span>, <span class="uk">Чим займаєшся?</span>, <span class="uk">Які в тебе плани?</span> og <span class="uk">Я планую + infinitiv</span>. Les forklaringene, gjør oppgavene og sjekk svarene etterpå.
+</div>
+
+<div class="audio-box">
+  <div class="audio-title">Audio 1 · spørsmål og fraser</div>
+  <p>Lytt og gjenta: <span class="uk">Що робиш? · Чим займаєшся? · Які в тебе плани? · Я планую…</span></p>
+  <audio controls preload="none">
+    <source src="audio/plany_01_frazy.mp3" type="audio/mpeg">
+    Nettleseren din støtter ikke lydavspilling.
+  </audio>
+</div>
+
+<!-- =========== GRAMMATIKK =========== -->
+<section class="theory">
+  <h2>Grammatikk</h2>
+
+  <h3>1. To spørsmål om aktivitet</h3>
+  <p>Bruk disse spørsmålene i ulike situasjoner:</p>
+  <table>
+    <tr><th>Spørsmål</th><th>Uttale</th><th>Betydning</th></tr>
+    <tr><td><span class="uk">Що робиш?</span></td><td><span class="pron">sjtsjo RO-bysj</span></td><td>Hva gjør du? (akkurat nå)</td></tr>
+    <tr><td><span class="uk">Чим займаєшся?</span></td><td><span class="pron">tsjym zaj-MA-jesj-sja</span></td><td>Hva driver du med? (generelt / for tida)</td></tr>
+  </table>
+  <div class="tip-mini"><span class="uk">Що робиш?</span> brukes om noe som skjer nå. <span class="uk">Чим займаєшся?</span> brukes om aktivitet generelt eller for tiden.</div>
+
+  <h3>2. Які в тебе плани? — Hva er planene dine?</h3>
+  <p>Bruk spørsmålet når du spør om planer for i dag, i kveld, i morgen eller i helgen:</p>
+  <div class="model">
+    <div class="label">Modell</div>
+    <div class="uk-text">— Які в тебе плани на сьогодні? — Я планую піти в кіно.</div>
+    <div class="no-text">— Hva er planene dine for i dag? — Jeg planlegger å gå på kino.</div>
+  </div>
+
+  <h3>3. Я планую + infinitiv</h3>
+  <p>Etter <span class="hva">я планую</span> står neste verb i <strong>infinitiv</strong>. Infinitiv er ordbokformen av verbet. Den slutter ofte på <strong>-ти</strong>.</p>
+  <table>
+    <tr><th><span class="hva">я планую</span> +</th><th>infinitiv</th><th>Norsk</th></tr>
+    <tr><td>я планую</td><td><span class="uk">читати</span></td><td>jeg planlegger å lese</td></tr>
+    <tr><td>я планую</td><td><span class="uk">піти в кіно</span></td><td>… å gå på kino</td></tr>
+    <tr><td>я планую</td><td><span class="uk">зустрітися з другом</span></td><td>… å møte en venn</td></tr>
+  </table>
+  <div class="tip-mini"><span class="uk">Я читаю</span> = jeg leser. <span class="uk">Я планую читати</span> = jeg planlegger å lese. Etter <span class="uk">планую</span> bruker du infinitiv.</div>
+
+  <h3>4. Småord du trenger</h3>
+  <ul>
+    <li><span class="uk">тому</span> — so, derfor: <span class="uk">Сьогодні робочий день, <strong>тому</strong> працюю.</span></li>
+    <li><span class="uk">далі</span> — så, deretter: <span class="uk"><strong>Далі</strong> мої плани…</span></li>
+    <li><span class="uk">з / із</span> — med: <span class="uk">зустрітися <strong>з</strong> другом</span>, <span class="uk">гуляти <strong>із</strong> собакою</span></li>
+    <li><span class="uk">або</span> — eller: <span class="uk">кіно <strong>або</strong> клуб</span></li>
+  </ul>
+
+  <h3>5. Reagere på et forslag</h3>
+  <ul>
+    <li><span class="uk">А як щодо…?</span> — Hva med…?</li>
+    <li><span class="uk">Гарна ідея!</span> — God idé!</li>
+    <li><span class="uk">Можемо… разом.</span> — Vi kan… sammen.</li>
+  </ul>
+</section>
+
+<!-- =========== VOCAB =========== -->
+<section class="vocab">
+  <h2>Словник · Ordliste</h2>
+
+  <h3 style="color:var(--ink);">Іменники · Substantiv</h3>
+  <table class="task-table">
+    <tr><th>Українська</th><th>Norsk</th><th>Українська</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">робочий день</span></td><td>arbeidsdag</td><td><span class="uk">плани</span></td><td>planer</td></tr>
+    <tr><td><span class="uk">вихідний</span></td><td>fridag</td><td><span class="uk">друг</span></td><td>venn</td></tr>
+    <tr><td><span class="uk">собака</span></td><td>hund</td><td><span class="uk">клуб</span></td><td>klubb</td></tr>
+    <tr><td><span class="uk">кіно</span></td><td>kino</td><td><span class="uk">фільм</span></td><td>film</td></tr>
+    <tr><td><span class="uk">книга</span></td><td>bok</td><td><span class="uk">ідея</span></td><td>idé</td></tr>
+  </table>
+
+  <h3 style="color:var(--ink);">Дієслова · Verb</h3>
+  <table class="task-table">
+    <tr><th>Українська</th><th>Norsk</th><th>Українська</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">займатися</span></td><td>å drive med</td><td><span class="uk">планувати</span></td><td>å planlegge</td></tr>
+    <tr><td><span class="uk">їсти / поїсти</span></td><td>å spise</td><td><span class="uk">відпочивати</span></td><td>å hvile / slappe av</td></tr>
+    <tr><td><span class="uk">гуляти із собакою</span></td><td>å gå tur med hunden</td><td><span class="uk">зустрітися з…</span></td><td>å møte…</td></tr>
+    <tr><td><span class="uk">піти в клуб</span></td><td>å gå på klubb</td><td><span class="uk">піти в кіно</span></td><td>å gå på kino</td></tr>
+    <tr><td><span class="uk">дивитися фільм</span></td><td>å se en film</td><td><span class="uk">читати книгу</span></td><td>å lese ei bok</td></tr>
+  </table>
+
+  <h3 style="color:var(--ink);">Інші слова · Andre ord</h3>
+  <table class="task-table">
+    <tr><th>Українська</th><th>Norsk</th><th>Українська</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">новий</span></td><td>ny</td><td><span class="uk">смачно</span></td><td>godt (smak)</td></tr>
+    <tr><td><span class="uk">тому</span></td><td>derfor</td><td><span class="uk">далі</span></td><td>så, deretter</td></tr>
+    <tr><td><span class="uk">з / із</span></td><td>med</td><td><span class="uk">або</span></td><td>eller</td></tr>
+  </table>
+</section>
+
+
+<div class="audio-box">
+  <div class="audio-title">Audio 2 · ord og uttrykk</div>
+  <p>Lytt til ordene og uttrykkene. Gjenta høyt.</p>
+  <audio controls preload="none">
+    <source src="audio/plany_02_slova_vyrazy.mp3" type="audio/mpeg">
+    Nettleseren din støtter ikke lydavspilling.
+  </audio>
+</div>
+
+<!-- =========== TASK 1 — Hva betyr ordet =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">1</div>
+    <div class="task-title-box">
+      <h2>Velg riktig oversettelse</h2>
+      <div class="uk-title">Що означає слово?</div>
+      <div class="task-meta"><span class="pill">GJENKJENNING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Les det ukrainske ordet. Velg riktig norsk betydning: a, b eller c. <span class="uk-inst">Прочитай українське слово. Вибери правильний переклад.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="uk">плани</span> — a) hund &nbsp; b) planer &nbsp; c) film</div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="uk">вихідний</span> — a) fridag &nbsp; b) arbeidsdag &nbsp; c) venn</div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="uk">собака</span> — a) klubb &nbsp; b) bok &nbsp; c) hund</div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt"><span class="uk">кіно</span> — a) kino &nbsp; b) idé &nbsp; c) venn</div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt"><span class="uk">друг</span> — a) film &nbsp; b) venn &nbsp; c) klubb</div></div>
+    <div class="ex-row"><div class="ex-num">6.</div><div class="ex-prompt"><span class="uk">далі</span> — a) derfor &nbsp; b) så, deretter &nbsp; c) eller</div></div>
+    <div class="ex-row"><div class="ex-num">7.</div><div class="ex-prompt"><span class="uk">смачно</span> — a) ny &nbsp; b) godt (smak) &nbsp; c) med</div></div>
+    <div class="ex-row"><div class="ex-num">8.</div><div class="ex-prompt"><span class="uk">ідея</span> — a) idé &nbsp; b) plan &nbsp; c) bok</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans1', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans1"><strong>Fasit:</strong> 1-b · 2-a · 3-c · 4-a · 5-b · 6-b · 7-b · 8-a</div>
+</section>
+
+<!-- =========== TASK 2 — Koble verb =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">2</div>
+    <div class="task-title-box">
+      <h2>Koble uttrykk og oversettelse</h2>
+      <div class="uk-title">Поєднай дію з перекладом</div>
+      <div class="task-meta"><span class="pill">PARING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Les det ukrainske uttrykket. Skriv bokstaven som passer til norsk oversettelse. <span class="uk-inst">Прочитай український вираз. Напиши правильну букву.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="uk">піти в кіно</span> <input type="text" class="short"> &nbsp; A. å lese ei bok</div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="uk">читати книгу</span> <input type="text" class="short"> &nbsp; B. å møte en venn</div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="uk">гуляти із собакою</span> <input type="text" class="short"> &nbsp; C. å gå på kino</div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt"><span class="uk">зустрітися з другом</span> <input type="text" class="short"> &nbsp; D. å se en film</div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt"><span class="uk">дивитися фільм</span> <input type="text" class="short"> &nbsp; E. å gå tur med hunden</div></div>
+    <div class="ex-row"><div class="ex-num">6.</div><div class="ex-prompt"><span class="uk">піти в клуб</span> <input type="text" class="short"> &nbsp; F. å gå på klubb</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans2', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans2"><strong>Fasit:</strong> 1-C · 2-A · 3-E · 4-B · 5-D · 6-F</div>
+</section>
+
+<!-- =========== TASK 3 — Що робиш / Чим займаєшся =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">3</div>
+    <div class="task-title-box">
+      <h2>Velg riktig betydning</h2>
+      <div class="uk-title">Яке питання?</div>
+      <div class="task-meta"><span class="pill">GJENKJENNING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Les spørsmålet eller uttrykket. Velg riktig norsk betydning. <span class="uk-inst">Прочитай питання або вираз. Вибери правильний переклад.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="uk">Що робиш?</span> — a) Hva gjør du? &nbsp; b) Hvor bor du?</div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="uk">Чим займаєшся?</span> — a) Hva heter du? &nbsp; b) Hva driver du med?</div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="uk">Які в тебе плани?</span> — a) Hva er planene dine? &nbsp; b) Hvor mange barn har du?</div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt"><span class="uk">А як щодо фільму?</span> — a) Hva med filmen? &nbsp; b) Hvor er filmen?</div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt"><span class="uk">Гарна ідея!</span> — a) God idé! &nbsp; b) Ha det bra!</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans3', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans3"><strong>Fasit:</strong> 1-a · 2-b · 3-a · 4-a · 5-a</div>
+</section>
+
+<!-- =========== TASK 4 — я планую + infinitiv =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">4</div>
+    <div class="task-title-box">
+      <h2>Skriv setninger med «я планую»</h2>
+      <div class="uk-title">Я планую…</div>
+      <div class="task-meta"><span class="pill">SKRIVING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Lag hele setninger. Bruk <span class="hva">я планую</span> + infinitiv. <span class="uk-inst">Склади повні речення. Використай «я планую» + інфінітив.</span></p>
+  <div class="model">
+    <div class="label">Modell</div>
+    <div class="uk-text">читати → <span class="hvem">Я</span> <span class="hva">планую</span> читати.</div>
+    <div class="no-text">Jeg planlegger å lese.</div>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">піти в кіно → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">читати книгу → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">дивитися фільм → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">зустрітися з другом → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">гуляти із собакою → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">6.</div><div class="ex-prompt">піти в клуб → <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans4', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans4"><strong>Fasit:</strong> 1. <code>Я планую піти в кіно.</code> 2. <code>Я планую читати книгу.</code> 3. <code>Я планую дивитися фільм.</code> 4. <code>Я планую зустрітися з другом.</code> 5. <code>Я планую гуляти із собакою.</code> 6. <code>Я планую піти в клуб.</code></div>
+</section>
+
+<!-- =========== TASK 5 — fyll inn småord =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">5</div>
+    <div class="task-title-box">
+      <h2>Fyll inn riktig småord</h2>
+      <div class="uk-title">Встав маленьке слово</div>
+      <div class="task-meta"><span class="pill">LUKETEKST</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Velg ett ord fra boksen: <span class="uk">тому · далі · з · або</span>. <span class="uk-inst">Вибери одне слово з рамки.</span></p>
+  <div class="word-bank">
+    <span class="pill">тому</span><span class="pill">далі</span><span class="pill">з</span><span class="pill">або</span>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Сьогодні робочий день, <input type="text" class="short"> я працюю. <em>(derfor)</em></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><input type="text" class="short"> мої плани: поїсти і гуляти. <em>(så, deretter)</em></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Я планую зустрітися <input type="text" class="short"> другом. <em>(med)</em></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Я планую піти в кіно <input type="text" class="short"> клуб. <em>(eller)</em></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans5', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans5"><strong>Fasit:</strong> 1. <code>тому</code> · 2. <code>Далі</code> · 3. <code>з</code> · 4. <code>або</code></div>
+</section>
+
+<!-- =========== TASK 6 — Lese teksten =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">6</div>
+    <div class="task-title-box">
+      <h2>Les teksten og svar</h2>
+      <div class="uk-title">Читання · Lesing</div>
+      <div class="task-meta"><span class="pill">LESING</span></div>
+    </div>
+  </div>
+  <div class="audio-box">
+    <div class="audio-title">Audio 3 · текст</div>
+    <audio controls preload="none">
+      <source src="audio/plany_03_tekst.mp3" type="audio/mpeg">
+      Nettleseren din støtter ikke lydavspilling.
+    </audio>
+  </div>
+  <div class="model">
+    <div class="uk-text" style="line-height:1.7;">Сьогодні робочий день, тому зараз я працюю. Далі мої плани — смачно поїсти, погуляти із собакою і зустрітися з другом. А чим ти займаєшся? Які в тебе плани на сьогодні?</div>
+    <div class="no-text" style="margin-top:8px;">I dag er det arbeidsdag, så akkurat nå jobber jeg. Så er planene mine: spise godt, gå tur med hunden og møte en venn. Og hva driver du med? Hva er planene dine for i dag?</div>
+  </div>
+  <p class="task-instruction">Les teksten. Svar <strong>Так</strong> eller <strong>Ні</strong>. <span class="uk-inst">Прочитай текст. Відповідай «Так» або «Ні».</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Сьогодні вихідний? <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Зараз людина працює? <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Людина планує гуляти із собакою? <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Людина планує зустрітися з другом? <input type="text" class="short"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans6', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans6"><strong>Fasit:</strong> 1. <code>Ні</code> (робочий день) · 2. <code>Так</code> · 3. <code>Так</code> · 4. <code>Так</code></div>
+</section>
+
+<!-- =========== TASK 7 — Dialog luketekst =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">7</div>
+    <div class="task-title-box">
+      <h2>Fullfør dialogen</h2>
+      <div class="uk-title">Діалог: Марина і Ігор</div>
+      <div class="task-meta"><span class="pill">DIALOG</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Skriv inn ordene som mangler: <span class="uk">робиш, займаєшся, плани, планую, ідея</span>. <span class="uk-inst">Впиши пропущені слова.</span></p>
+  <div class="audio-box">
+    <div class="audio-title">Audio 4 · dialog</div>
+    <p>Lytt til dialogen. Fyll deretter inn ordene som mangler.</p>
+    <audio controls preload="none">
+      <source src="audio/plany_04_dialog.mp3" type="audio/mpeg">
+      Nettleseren din støtter ikke lydavspilling.
+    </audio>
+  </div>
+  <div class="dialog-box">
+    <div class="dialog-line"><span class="dialog-who">Марина:</span><span class="dialog-text"> Привіт, Ігоре! Що <input type="text" class="short">?</span></div>
+    <div class="dialog-line"><span class="dialog-who">Ігор:</span><span class="dialog-text"> Привіт, Марино! Сьогодні в мене робочий день, тому працюю. А ти чим <input type="text" class="short">?</span></div>
+    <div class="dialog-line"><span class="dialog-who">Марина:</span><span class="dialog-text"> У мене вихідний, тож відпочиваю. Які в тебе <input type="text" class="short"> на сьогодні?</span></div>
+    <div class="dialog-line"><span class="dialog-who">Ігор:</span><span class="dialog-text"> Я <input type="text" class="short"> піти в кіно або клуб. А ти?</span></div>
+    <div class="dialog-line"><span class="dialog-who">Марина:</span><span class="dialog-text"> А я планую читати книгу або дивитися фільм.</span></div>
+    <div class="dialog-line"><span class="dialog-who">Ігор:</span><span class="dialog-text"> Можемо подивитися фільм разом 😊</span></div>
+    <div class="dialog-line"><span class="dialog-who">Марина:</span><span class="dialog-text"> Гарна <input type="text" class="short">!</span></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans7', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans7"><strong>Fasit:</strong> Що <code>робиш</code>? · чим <code>займаєшся</code>? · які в тебе <code>плани</code>? · Я <code>планую</code> піти… · Гарна <code>ідея</code>!</div>
+</section>
+
+<!-- =========== TASK 8 — Dialog forståelse =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">8</div>
+    <div class="task-title-box">
+      <h2>Svar om dialogen</h2>
+      <div class="uk-title">Питання до діалогу</div>
+      <div class="task-meta"><span class="pill">FORSTÅELSE</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Les dialogen i oppgave 7. Velg riktig svar: a eller b. <span class="uk-inst">Прочитай діалог у завданні 7. Вибери відповідь: a або b.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Hvem har arbeidsdag? — a) <span class="uk">Марина</span> &nbsp; b) <span class="uk">Ігор</span></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Hvem har fridag? — a) <span class="uk">Марина</span> &nbsp; b) <span class="uk">Ігор</span></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Hva planlegger Ігор? — a) <span class="uk">кіно або клуб</span> &nbsp; b) <span class="uk">книга</span></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Hva blir de enige om? — a) <span class="uk">дивитися фільм разом</span> &nbsp; b) <span class="uk">гуляти разом</span></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans8', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans8"><strong>Fasit:</strong> 1-b (Ігор) · 2-a (Марина) · 3-a · 4-a</div>
+</section>
+
+<!-- =========== TASK 9 — Bygg svar =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">9</div>
+    <div class="task-title-box">
+      <h2>Svar på spørsmålene</h2>
+      <div class="uk-title">Дай відповідь</div>
+      <div class="task-meta"><span class="pill">SKRIVING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Svar med hele setninger på ukrainsk. <span class="uk-inst">Відповідай повними реченнями українською.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Сьогодні робочий день чи вихідний? → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Чим ти займаєшся зараз? → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Які в тебе плани на сьогодні? → <input type="text" class="long"></div></div>
+  </div>
+  <div class="tip-box">Bruk disse startene: <span class="uk">Сьогодні… · Зараз я… · Я планую…</span></div>
+</section>
+
+<!-- =========== TASK 10 — Min plan (fri tekst) =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">10</div>
+    <div class="task-title-box">
+      <h2>Skriv en kort tekst</h2>
+      <div class="uk-title">Мій день і мої плани</div>
+      <div class="task-meta"><span class="pill">FRI SKRIVING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Skriv 4–5 enkle setninger om dagen din og planene dine. Bruk setningsstartene. <span class="uk-inst">Напиши 4–5 простих речень. Використай початки речень.</span></p>
+  <div class="model">
+    <div class="label">Eksempel</div>
+    <div class="uk-text">Сьогодні робочий день, тому я працюю. Далі мої плани: я планую погуляти і поїсти. Ввечері я планую дивитися фільм. Гарна ідея!</div>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Сьогодні <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Зараз я <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Далі я планую <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Ввечері я планую <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">Я <strong>не</strong> планую <input type="text" class="long"></div></div>
+  </div>
+  <div class="tip-box">Les teksten din høyt to ganger.</div>
+</section>
+
+<!-- =========== DEL 2 — tid, sted og modalverb =========== -->
+<section class="theory" style="border-left:5px solid var(--website-teal);">
+  <div class="kicker" style="color:var(--website-teal);">Del 2</div>
+  <h2>Tid, sted og хочу / можу</h2>
+  <p>Denne delen bruker spørsmålene <strong>Коли?</strong> og <strong>Де?</strong>, verbet <strong>займатися</strong> og uttrykkene <strong>хочу / можу + infinitiv</strong>.</p>
+
+  <h3>1. Коли? — Når? (tid)</h3>
+  <p>Spørsmålet <span class="nar">Коли?</span> spør om tid. Du svarer med <span class="hvem">Я</span> + handling + tidsord:</p>
+  <div class="model">
+    <div class="uk-text">— <span class="nar">Коли</span> ти <span class="hva">встаєш</span>? — <span class="hvem">Я</span> <span class="hva">встаю</span> <span class="nar">вранці</span>.</div>
+    <div class="no-text">— Når står du opp? — Jeg står opp om morgenen.</div>
+  </div>
+  <table>
+    <tr><th>Українська</th><th>Norsk</th><th>Українська</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">вранці</span></td><td>om morgenen</td><td><span class="uk">рано</span></td><td>tidlig</td></tr>
+    <tr><td><span class="uk">вдень</span></td><td>om dagen</td><td><span class="uk">пізно</span></td><td>sent</td></tr>
+    <tr><td><span class="uk">ввечері</span></td><td>om kvelden</td><td><span class="uk">о сьомій</span></td><td>klokka sju</td></tr>
+    <tr><td><span class="uk">вночі</span></td><td>om natten</td><td><span class="uk">о восьмій</span></td><td>klokka åtte</td></tr>
+  </table>
+
+  <h3>2. Де? — Hvor? (sted)</h3>
+  <p>Spørsmålet <span class="nar">Де?</span> spør om sted. Bruk stedsfrasene i tabellen:</p>
+  <div class="model">
+    <div class="uk-text">— <span class="nar">Де</span> ти <span class="hva">працюєш</span>? — <span class="hvem">Я</span> <span class="hva">працюю</span> <span class="nar">в офісі</span>.</div>
+    <div class="no-text">— Hvor jobber du? — Jeg jobber på kontor.</div>
+  </div>
+  <table>
+    <tr><th>Українська</th><th>Norsk</th><th>Українська</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">вдома</span></td><td>hjemme</td><td><span class="uk">в магазині</span></td><td>i butikk</td></tr>
+    <tr><td><span class="uk">в офісі</span></td><td>på kontor</td><td><span class="uk">в ресторані</span></td><td>på restaurant</td></tr>
+    <tr><td><span class="uk">в школі</span></td><td>på skole</td><td><span class="uk">на роботі</span></td><td>på jobb</td></tr>
+    <tr><td><span class="uk">в університеті</span></td><td>på universitetet</td><td><span class="uk">в готелі</span></td><td>på hotell</td></tr>
+  </table>
+  <div class="tip-mini">Bruk disse frasene direkte: <span class="uk">вдома, в офісі, в школі, на роботі</span>.</div>
+
+  <h3>3. Займатися + чим? — drive med (instrumental)</h3>
+  <p>Spørsmålet <span class="uk">Чим займаєшся?</span> krever et spesielt svar: ordet etter <span class="hva">займаюся</span> får en ny endelse — ofte <strong>-ом / -ою / -ям</strong>. Dette kalles instrumental, men du trenger bare å kjenne mønsteret:</p>
+  <table>
+    <tr><th>Vanlig form</th><th>Etter займаюся</th><th>Setning</th></tr>
+    <tr><td><span class="uk">спорт</span></td><td><span class="obj">спортом</span></td><td><span class="uk">Я займаюся <span class="obj">спортом</span>.</span></td></tr>
+    <tr><td><span class="uk">йога</span></td><td><span class="obj">йогою</span></td><td><span class="uk">Я займаюся <span class="obj">йогою</span>.</span></td></tr>
+    <tr><td><span class="uk">музика</span></td><td><span class="obj">музикою</span></td><td><span class="uk">Я займаюся <span class="obj">музикою</span>.</span></td></tr>
+    <tr><td><span class="uk">малювання</span></td><td><span class="obj">малюванням</span></td><td><span class="uk">Я займаюся <span class="obj">малюванням</span>.</span></td></tr>
+    <tr><td><span class="uk">плавання</span></td><td><span class="obj">плаванням</span></td><td><span class="uk">Я займаюся <span class="obj">плаванням</span>.</span></td></tr>
+  </table>
+  <div class="tip-mini">Formene etter <span class="uk">займаюся</span>: -а → <strong>-ою</strong>, konsonant → <strong>-ом</strong>, -ння → <strong>-нням</strong>.</div>
+
+  <h3>4. Tre betydninger av «Чим займаєшся?»</h3>
+  <p>På norsk kan spørsmålet bety flere ting:</p>
+  <ul>
+    <li><span class="uk">Чим займаєшся?</span> — Hva driver du med? (fritid / for tida)</li>
+    <li><span class="uk">Ким працюєш?</span> — Hva jobber du som? (yrke)</li>
+    <li><span class="uk">Яка твоя професія?</span> — Hva er yrket ditt?</li>
+  </ul>
+
+  <h3>5. Хочу / можу + handling (ordbok-form)</h3>
+  <p>Som med <span class="hva">планую</span>, står det andre verbet i <strong>ordbok-form</strong> etter <span class="hva">хочу</span> (vil) og <span class="hva">можу</span> (kan):</p>
+  <table>
+    <tr><th>Хто?</th><th>хотіти (ville)</th><th>могти (kunne)</th></tr>
+    <tr><td>я</td><td><span class="uk">хочу</span></td><td><span class="uk">можу</span></td></tr>
+    <tr><td>ти</td><td><span class="uk">хочеш</span></td><td><span class="uk">можеш</span></td></tr>
+    <tr><td>він/вона</td><td><span class="uk">хоче</span></td><td><span class="uk">може</span></td></tr>
+  </table>
+  <div class="model">
+    <div class="uk-text"><span class="hvem">Я</span> <span class="hva">хочу</span> читати. · <span class="hvem">Я</span> <span class="hva">можу</span> говорити українською.</div>
+    <div class="no-text">Jeg vil lese. · Jeg kan snakke ukrainsk.</div>
+  </div>
+</section>
+
+
+<div class="audio-box">
+  <div class="audio-title">Audio 6 · Коли? Де?</div>
+  <p>Lytt til spørsmålene og svarene. Gjenta høyt.</p>
+  <audio controls preload="none">
+    <source src="audio/plany_06_koly_de.mp3" type="audio/mpeg">
+    Nettleseren din støtter ikke lydavspilling.
+  </audio>
+</div>
+
+<!-- =========== TASK 11 — Коли? svar =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">11</div>
+    <div class="task-title-box">
+      <h2>Коли? — velg tidsord</h2>
+      <div class="uk-title">Коли? — час</div>
+      <div class="task-meta"><span class="pill">КОЛИ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Svar på spørsmålene med et tidsord fra boksen. <span class="uk-inst">Дай відповідь словом часу з рамки.</span></p>
+  <div class="word-bank">
+    <span class="pill">вранці</span><span class="pill">вдень</span><span class="pill">ввечері</span><span class="pill">о сьомій</span><span class="pill">рано</span><span class="pill">пізно</span>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="nar">Коли</span> ти встаєш? — Я встаю <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="nar">Коли</span> ти працюєш? — Я працюю <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="nar">Коли</span> ти відпочиваєш? — Я відпочиваю <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans11', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans11"><strong>Mulige svar:</strong> 1. <code>вранці / о сьомій / рано</code> · 2. <code>вдень</code> · 3. <code>ввечері</code>. (Flere svar er riktige.)</div>
+</section>
+
+<!-- =========== TASK 12 — Де? svar =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">12</div>
+    <div class="task-title-box">
+      <h2>Hvor? — velg sted</h2>
+      <div class="uk-title">Де? — місце</div>
+      <div class="task-meta"><span class="pill">ДЕ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Svar på spørsmålene med en stedsfrase fra boksen. <span class="uk-inst">Дай відповідь фразою місця з рамки.</span></p>
+  <div class="word-bank">
+    <span class="pill">вдома</span><span class="pill">в офісі</span><span class="pill">в школі</span><span class="pill">в магазині</span><span class="pill">на роботі</span>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="nar">Де</span> ти працюєш? — Я працюю <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="nar">Де</span> ти читаєш? — Я читаю <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="nar">Де</span> ти відпочиваєш? — Я відпочиваю <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans12', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans12"><strong>Mulige svar:</strong> 1. <code>в офісі / вдома / на роботі</code> · 2. <code>вдома</code> · 3. <code>вдома</code>. (Flere svar er riktige.)</div>
+</section>
+
+<!-- =========== TASK 13 — koble spørsmål-svar =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">13</div>
+    <div class="task-title-box">
+      <h2>Koble spørsmål og svar</h2>
+      <div class="uk-title">З'єднай питання і відповідь</div>
+      <div class="task-meta"><span class="pill">PARING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Skriv riktig bokstav. <span class="uk-inst">Напиши правильну букву.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="uk">Коли ти встаєш?</span> <input type="text" class="short"> &nbsp; A. Я працюю в магазині.</div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="uk">Де ти працюєш?</span> <input type="text" class="short"> &nbsp; B. Я встаю о сьомій.</div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="uk">Коли ти працюєш?</span> <input type="text" class="short"> &nbsp; C. Я відпочиваю ввечері.</div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt"><span class="uk">Коли ти відпочиваєш?</span> <input type="text" class="short"> &nbsp; D. Я працюю вдень.</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans13', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans13"><strong>Fasit:</strong> 1-B · 2-A · 3-D · 4-C</div>
+</section>
+
+
+<div class="audio-box">
+  <div class="audio-title">Audio 5 · я-form og ти-form</div>
+  <p>Lytt til verbformene. Si hver setning høyt.</p>
+  <audio controls preload="none">
+    <source src="audio/plany_05_ya_ty_formy.mp3" type="audio/mpeg">
+    Nettleseren din støtter ikke lydavspilling.
+  </audio>
+</div>
+
+<!-- =========== TASK 14 — я/ти fyll inn =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">14</div>
+    <div class="task-title-box">
+      <h2>Я eller ти?</h2>
+      <div class="uk-title">Доповніть: встаю, працюю, встаєш, працюєш</div>
+      <div class="task-meta"><span class="pill">LUKETEKST</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Fyll inn riktig verbform. Se på pronomenet: <span class="uk">я</span> eller <span class="uk">ти</span>. <span class="uk-inst">Встав правильну форму дієслова.</span></p>
+  <div class="word-bank">
+    <span class="pill">встаю</span><span class="pill">встаєш</span><span class="pill">працюю</span><span class="pill">працюєш</span>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Я <input type="text" class="short"> о сьомій.</div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Ти <input type="text" class="short"> о восьмій?</div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Я <input type="text" class="short"> в офісі.</div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Де ти <input type="text" class="short">?</div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">Коли ти <input type="text" class="short">?</div></div>
+    <div class="ex-row"><div class="ex-num">6.</div><div class="ex-prompt">Я не <input type="text" class="short">. Я вчуся.</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans14', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans14"><strong>Fasit:</strong> 1. <code>встаю</code> · 2. <code>встаєш</code> · 3. <code>працюю</code> · 4. <code>працюєш</code> · 5. <code>встаєш</code> · 6. <code>працюю</code></div>
+</section>
+
+<!-- =========== TASK 15 — я-form / ти-form drill =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">15</div>
+    <div class="task-title-box">
+      <h2>Skriv я-form og ти-form</h2>
+      <div class="uk-title">Напиши форму з я і ти</div>
+      <div class="task-meta"><span class="pill">FORMER</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Skriv verbet i to former: <span class="uk">я …</span> og <span class="uk">ти …</span>. <span class="uk-inst">Напиши дві форми дієслова.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">працювати → я <input type="text" class="short"> · ти <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">слухати → я <input type="text" class="short"> · ти <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">відпочивати → я <input type="text" class="short"> · ти <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">вивчати → я <input type="text" class="short"> · ти <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">гуляти → я <input type="text" class="short"> · ти <input type="text" class="short"></div></div>
+    <div class="ex-row"><div class="ex-num">6.</div><div class="ex-prompt">готувати → я <input type="text" class="short"> · ти <input type="text" class="short"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans15', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans15"><strong>Fasit:</strong> 1. <code>працюю · працюєш</code> · 2. <code>слухаю · слухаєш</code> · 3. <code>відпочиваю · відпочиваєш</code> · 4. <code>вивчаю · вивчаєш</code> · 5. <code>гуляю · гуляєш</code> · 6. <code>готую · готуєш</code></div>
+</section>
+
+
+<div class="audio-box">
+  <div class="audio-title">Audio 7 · займаюся + чим</div>
+  <p>Lytt til formene etter <span class="uk">займаюся</span>. Gjenta høyt.</p>
+  <audio controls preload="none">
+    <source src="audio/plany_07_zaymayusya_chym.mp3" type="audio/mpeg">
+    Nettleseren din støtter ikke lydavspilling.
+  </audio>
+</div>
+
+<!-- =========== TASK 16 — займатися + орудний =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">16</div>
+    <div class="task-title-box">
+      <h2>Skriv riktig form etter «займаюся»</h2>
+      <div class="uk-title">Постав слово в правильну форму</div>
+      <div class="task-meta"><span class="pill">ЧИМ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Sett ordet i parentes i riktig form etter <span class="hva">займаюся</span>. <span class="uk-inst">Постав слово в дужках у правильну форму.</span></p>
+  <div class="model">
+    <div class="label">Modell</div>
+    <div class="uk-text">(спорт) → Я займаюся <span class="obj">спортом</span>.</div>
+    <div class="no-text">Jeg driver med sport.</div>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">(йога) → Я займаюся <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">(музика) → Я займаюся <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">(спорт) → Я займаюся <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">(малювання) → Я займаюся <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">(плавання) → Я займаюся <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans16', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans16"><strong>Fasit:</strong> 1. <code>йогою</code> · 2. <code>музикою</code> · 3. <code>спортом</code> · 4. <code>малюванням</code> · 5. <code>плаванням</code></div>
+</section>
+
+<!-- =========== TASK 17 — хочу / можу =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">17</div>
+    <div class="task-title-box">
+      <h2>Fyll inn infinitiv etter хочу / можу</h2>
+      <div class="uk-title">Я хочу / я можу + дія</div>
+      <div class="task-meta"><span class="pill">SKRIVING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Velg riktig verb fra boksen. Skriv verbet i infinitiv etter <span class="uk">хочу</span> eller <span class="uk">можу</span>. <span class="uk-inst">Вибери дієслово з рамки. Впиши інфінітив.</span></p>
+  <div class="word-bank">
+    <span class="pill">читати</span><span class="pill">працювати</span><span class="pill">говорити</span><span class="pill">слухати</span><span class="pill">гуляти</span>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Я хочу <input type="text" class="long"> <em>(lese)</em></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Я можу <input type="text" class="long"> українською <em>(snakke)</em></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Ти хочеш <input type="text" class="long"> музику? <em>(høre)</em></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Я хочу <input type="text" class="long"> ввечері <em>(gå tur)</em></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">Я не можу <input type="text" class="long"> сьогодні <em>(jobbe)</em></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans17', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans17"><strong>Fasit:</strong> 1. <code>читати</code> · 2. <code>говорити</code> · 3. <code>слухати</code> · 4. <code>гуляти</code> · 5. <code>працювати</code></div>
+</section>
+
+<!-- =========== TASK 18 — oversett =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">18</div>
+    <div class="task-title-box">
+      <h2>Oversett til ukrainsk</h2>
+      <div class="uk-title">Перекладіть українською</div>
+      <div class="task-meta"><span class="pill">OVERSETTELSE</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Skriv hele setningen på ukrainsk. <span class="uk-inst">Напиши повне речення українською.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">Jeg jobber hjemme. → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">Hvor jobber du? → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">Når står du opp? → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">Jeg driver med sport. → <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt">Jeg vil snakke ukrainsk. → <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans18', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans18"><strong>Fasit:</strong> 1. <code>Я працюю вдома.</code> · 2. <code>Де ти працюєш?</code> · 3. <code>Коли ти встаєш?</code> · 4. <code>Я займаюся спортом.</code> · 5. <code>Я хочу говорити українською.</code></div>
+</section>
+
+
+<!-- =========== DEL 3 — орудний відмінок =========== -->
+<section class="theory" style="border-left:5px solid var(--website-teal);">
+  <div class="kicker" style="color:var(--website-teal);">Del 3</div>
+  <h2>Орудний відмінок</h2>
+  <p>Орудний відмінок brukes i svar på spørsmålene <span class="obj">ким?</span> og <span class="obj">чим?</span>. I denne øvingen bruker du tre mønstre: <span class="obj">чим?</span>, <span class="obj">ким?</span> og <span class="obj">з ким?</span>.</p>
+  <div class="sfl-legend">
+    <span class="item"><span class="q obj">ЧИМ?</span><span class="gloss">Med hva? — verktøy</span></span>
+    <span class="item"><span class="q obj">КИМ?</span><span class="gloss">Som hva? — yrke</span></span>
+    <span class="item"><span class="q obj">З КИМ?</span><span class="gloss">Med hvem? — sammen med</span></span>
+  </div>
+
+  <h3>1. Чим? — med hva (verktøy)</h3>
+  <p>Vi bruker instrumental for å si <strong>hva vi gjør noe med</strong> — verktøyet:</p>
+  <div class="model">
+    <div class="uk-text"><span class="hvem">Я</span> <span class="hva">пишу</span> <span class="obj">ручкою</span>. · <span class="hvem">Я</span> <span class="hva">малюю</span> <span class="obj">фарбою</span>.</div>
+    <div class="no-text">Jeg skriver med penn. · Jeg maler med maling.</div>
+  </div>
+  <table>
+    <tr><th>Vanlig form</th><th>ЧИМ? (instrumental)</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">ручка</span></td><td><span class="obj">ручкою</span></td><td>med penn</td></tr>
+    <tr><td><span class="uk">олівець</span></td><td><span class="obj">олівцем</span></td><td>med blyant</td></tr>
+    <tr><td><span class="uk">фарба</span></td><td><span class="obj">фарбою</span></td><td>med maling</td></tr>
+    <tr><td><span class="uk">крейда</span></td><td><span class="obj">крейдою</span></td><td>med kritt</td></tr>
+  </table>
+
+  <h3>2. Ким? — som hva (yrke etter «бути»)</h3>
+  <p>Etter <span class="uk">бути</span> (å være / bli) sier vi yrket i instrumental. Spørsmålet er <span class="obj">Ким?</span> (som hvem / hva):</p>
+  <div class="model">
+    <div class="uk-text">— <span class="obj">Ким</span> ти хочеш <span class="hva">бути</span>? — <span class="hvem">Я</span> хочу бути <span class="obj">лікарем</span>.</div>
+    <div class="no-text">— Hva vil du bli? — Jeg vil bli lege.</div>
+  </div>
+  <table>
+    <tr><th>Yrke</th><th>КИМ? (etter бути)</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">лікар</span></td><td><span class="obj">лікарем</span></td><td>lege</td></tr>
+    <tr><td><span class="uk">викладач</span></td><td><span class="obj">викладачем</span></td><td>lærer</td></tr>
+    <tr><td><span class="uk">програміст</span></td><td><span class="obj">програмістом</span></td><td>programmerer</td></tr>
+    <tr><td><span class="uk">вчителька</span></td><td><span class="obj">вчителькою</span></td><td>lærerinne</td></tr>
+  </table>
+
+  <h3>3. З ким? — med hvem (sammen med)</h3>
+  <p>Etter <span class="uk">з</span> (med) bruker vi også instrumental. Spørsmålet er <span class="obj">З ким?</span></p>
+  <div class="model">
+    <div class="uk-text"><span class="hvem">Я</span> <span class="hva">розмовляю</span> <span class="obj">з другом</span>. · <span class="hvem">Я</span> <span class="hva">гуляю</span> <span class="obj">з мамою</span>.</div>
+    <div class="no-text">Jeg snakker med en venn. · Jeg går tur med mamma.</div>
+  </div>
+  <table>
+    <tr><th>Person</th><th>З КИМ?</th><th>Norsk</th></tr>
+    <tr><td><span class="uk">друг</span></td><td><span class="obj">з другом</span></td><td>med en venn</td></tr>
+    <tr><td><span class="uk">мама</span></td><td><span class="obj">з мамою</span></td><td>med mamma</td></tr>
+    <tr><td><span class="uk">колега</span></td><td><span class="obj">з колегою</span></td><td>med en kollega</td></tr>
+    <tr><td><span class="uk">подруга</span></td><td><span class="obj">з подругою</span></td><td>med ei venninne</td></tr>
+  </table>
+  <div class="tip-mini"><strong>Verb som «liker» з ким:</strong> <span class="uk">розмовляти, зустрічатися, гуляти, обідати, працювати</span> + <span class="obj">з + ким</span>. F.eks. <span class="uk">Я обідаю <span class="obj">з другом</span>.</span></div>
+
+  <h3>4. Former</h3>
+  <table>
+    <tr><th>Slutter på</th><th>Instrumental</th><th>Eksempel</th></tr>
+    <tr><td>konsonant</td><td><strong>-ом / -ем</strong></td><td>спорт → <span class="obj">спортом</span>, лікар → <span class="obj">лікарем</span></td></tr>
+    <tr><td>-а</td><td><strong>-ою</strong></td><td>ручка → <span class="obj">ручкою</span>, мама → <span class="obj">мамою</span></td></tr>
+    <tr><td>-ння</td><td><strong>-нням</strong></td><td>малювання → <span class="obj">малюванням</span></td></tr>
+  </table>
+  <div class="tip-mini">Se på spørsmålet: <span class="obj">ким?</span> eller <span class="obj">чим?</span>. Da bruker du en instrumentalform.</div>
+
+  <h3>5. Орудний med språk</h3>
+  <p>Språk brukes også i instrumental: <span class="uk">Я розмовляю <span class="obj">українською</span>.</span> = Jeg snakker ukrainsk.</p>
+</section>
+
+
+<div class="audio-box">
+  <div class="audio-title">Audio 8 · орудний відмінок</div>
+  <p>Lytt til modellene for <span class="uk">чим?</span>, <span class="uk">ким?</span> og <span class="uk">з ким?</span>. Gjenta høyt.</p>
+  <audio controls preload="none">
+    <source src="audio/plany_08_orudnyy.mp3" type="audio/mpeg">
+    Nettleseren din støtter ikke lydavspilling.
+  </audio>
+</div>
+
+<!-- =========== TASK 19 — чим? velg =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">19</div>
+    <div class="task-title-box">
+      <h2>Чим? — skriv instrumental</h2>
+      <div class="uk-title">Чим ти пишеш / малюєш?</div>
+      <div class="task-meta"><span class="pill">ЧИМ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Sett ordet i parentes i instrumental. Skriv hva personen bruker. <span class="uk-inst">Постав слово в дужках в орудний відмінок.</span></p>
+  <div class="model">
+    <div class="label">Modell</div>
+    <div class="uk-text">(ручка) → Я пишу <span class="obj">ручкою</span>.</div>
+    <div class="no-text">Jeg skriver med penn.</div>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">(олівець) → Я пишу <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">(фарба) → Я малюю <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">(крейда) → Він пише <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">(ручка) → Вона пише <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans19', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans19"><strong>Fasit:</strong> 1. <code>олівцем</code> · 2. <code>фарбою</code> · 3. <code>крейдою</code> · 4. <code>ручкою</code></div>
+</section>
+
+<!-- =========== TASK 20 — ким? (бути) =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">20</div>
+    <div class="task-title-box">
+      <h2>Ким? — yrke etter бути</h2>
+      <div class="uk-title">Ким ти хочеш бути?</div>
+      <div class="task-meta"><span class="pill">КИМ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Sett yrket i instrumental etter <span class="uk">бути</span>. <span class="uk-inst">Постав професію в орудний після «бути».</span></p>
+  <div class="model">
+    <div class="label">Modell</div>
+    <div class="uk-text">(лікар) → Я хочу бути <span class="obj">лікарем</span>.</div>
+    <div class="no-text">Jeg vil bli lege.</div>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">(викладач) → Я хочу бути <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">(програміст) → Він хоче бути <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">(вчителька) → Вона хоче бути <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">(лікар) → Ти хочеш бути <input type="text" class="long">?</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans20', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans20"><strong>Fasit:</strong> 1. <code>викладачем</code> · 2. <code>програмістом</code> · 3. <code>вчителькою</code> · 4. <code>лікарем</code></div>
+</section>
+
+<!-- =========== TASK 21 — з ким? =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">21</div>
+    <div class="task-title-box">
+      <h2>З ким? — form etter з</h2>
+      <div class="uk-title">З ким ти розмовляєш?</div>
+      <div class="task-meta"><span class="pill">З КИМ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Sett personen i riktig form etter <span class="uk">з</span>. <span class="uk-inst">Постав особу в правильну форму після «з».</span></p>
+  <div class="model">
+    <div class="label">Modell</div>
+    <div class="uk-text">(друг) → Я розмовляю <span class="obj">з другом</span>.</div>
+    <div class="no-text">Jeg snakker med en venn.</div>
+  </div>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt">(мама) → Я гуляю з <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt">(колега) → Ми працюємо з <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt">(подруга) → Вона обідає з <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt">(друг) → Він зустрічається з <input type="text" class="long"></div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans21', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans21"><strong>Fasit:</strong> 1. <code>мамою</code> · 2. <code>колегою</code> · 3. <code>подругою</code> · 4. <code>другом</code></div>
+</section>
+
+<!-- =========== TASK 22 — koble spørsmål/svar =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">22</div>
+    <div class="task-title-box">
+      <h2>Hvilket spørsmål?</h2>
+      <div class="uk-title">З'єднай питання і відповідь</div>
+      <div class="task-meta"><span class="pill">ЧИМ? КИМ? З КИМ?</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Skriv riktig bokstav. <span class="uk-inst">Напиши правильну букву.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="uk">Чим ти пишеш?</span> <input type="text" class="short"> &nbsp; A. З другом.</div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="uk">Ким ти хочеш бути?</span> <input type="text" class="short"> &nbsp; B. Спортом.</div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="uk">З ким ти розмовляєш?</span> <input type="text" class="short"> &nbsp; C. Ручкою.</div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt"><span class="uk">Чим ти займаєшся?</span> <input type="text" class="short"> &nbsp; D. Лікарем.</div></div>
+  </div>
+  <button class="answer-key-toggle" onclick="toggleAnswer('ans22', this)">Vis fasit ↓</button>
+  <div class="answer-key" id="ans22"><strong>Fasit:</strong> 1-C · 2-D · 3-A · 4-B</div>
+</section>
+
+<!-- =========== TASK 23 — blandet + svar om deg selv =========== -->
+<section class="task">
+  <div class="task-header">
+    <div class="task-num">23</div>
+    <div class="task-title-box">
+      <h2>Svar om deg selv</h2>
+      <div class="uk-title">Дай відповідь про себе</div>
+      <div class="task-meta"><span class="pill">SKRIVING</span></div>
+    </div>
+  </div>
+  <p class="task-instruction">Svar med hele setninger. Bruk formene fra eksemplene. <span class="uk-inst">Відповідай повними реченнями. Використай моделі.</span></p>
+  <div class="exercise">
+    <div class="ex-row"><div class="ex-num">1.</div><div class="ex-prompt"><span class="uk">Чим ти пишеш?</span> → Я пишу <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">2.</div><div class="ex-prompt"><span class="uk">Ким ти хочеш бути?</span> → Я хочу бути <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">3.</div><div class="ex-prompt"><span class="uk">З ким ти гуляєш?</span> → Я гуляю з <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">4.</div><div class="ex-prompt"><span class="uk">Чим ти займаєшся?</span> → Я займаюся <input type="text" class="long"></div></div>
+    <div class="ex-row"><div class="ex-num">5.</div><div class="ex-prompt"><span class="uk">Якою мовою ти розмовляєш?</span> → Я розмовляю <input type="text" class="long"></div></div>
+  </div>
+  <div class="tip-box">Bruk modellene: <span class="uk">ручкою · викладачем · з другом · спортом · українською</span>.</div>
+</section>
+
+
+<!-- =========== REFLEKSJON =========== -->
+<section class="self-assess" style="background:var(--warm-card-2);border-radius:14px;padding:24px;">
+  <h2 style="font-family:var(--header-font);color:var(--ink);margin-top:0;">Skriv korte svar</h2>
+  <p style="color:var(--muted);">Skriv korte svar.</p>
+  <div style="margin-bottom:14px;">
+    <div style="margin-bottom:6px;color:var(--ink);">1. Hvilke nye ord vil du bruke i hverdagen?</div>
+    <input type="text" class="long" name="refl1" style="width:100%;">
+  </div>
+  <div style="margin-bottom:14px;">
+    <div style="margin-bottom:6px;color:var(--ink);">2. Hva er forskjellen på «я читаю» og «я планую читати»?</div>
+    <input type="text" class="long" name="refl2" style="width:100%;">
+  </div>
+  <div>
+    <div style="margin-bottom:6px;color:var(--ink);">3. Skriv én plan for i morgen på ukrainsk:</div>
+    <input type="text" class="long" name="refl3" style="width:100%;">
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="mantra">Чим займаєшся?</div>
+  <p>Planer, fritid og spørsmål på ukrainsk</p>
+</footer>
+
+</div>
+
+<!-- FLOATING KEYBOARD -->
+<div class="floating-keyboard" id="ukKeyboard">
+  <button class="keyboard-toggle" type="button" onclick="toggleKeyboard()">⌨ Українська клавіатура</button>
+  <div class="keyboard-panel" id="keyboardPanel">
+    <div class="keyboard-help">Klikk i et skrivefelt. Trykk på bokstavene her for å skrive ukrainsk.</div>
+    <div id="keyboardRows"></div>
+  </div>
+</div>
+
+<script>
+  function toggleAnswer(id, btn) {
+    const el = document.getElementById(id);
+    if (!el || !btn) return;
+    if (el.classList.contains('shown')) {
+      el.classList.remove('shown');
+      btn.textContent = btn.textContent.replace('Skjul', 'Vis').replace('↑', '↓');
+    } else {
+      el.classList.add('shown');
+      btn.textContent = btn.textContent.replace('Vis', 'Skjul').replace('↓', '↑');
+    }
+  }
+
+  // Save inputs locally
+  document.querySelectorAll('input[type="text"], textarea').forEach((el, i) => {
+    el.addEventListener('focus', () => setActiveTextField(el));
+    el.addEventListener('click', () => setActiveTextField(el));
+    const key = 'plany7_' + (el.name || 'i' + i);
+    try {
+      const saved = sessionStorage.getItem(key);
+      if (saved) el.value = saved;
+      el.addEventListener('input', () => {
+        try { sessionStorage.setItem(key, el.value); } catch(e) {}
+      });
+    } catch(e) {}
+  });
+
+  // UA KEYBOARD
+  let activeTextField = null;
+  let keyboardUppercase = false;
+  const ukrainianKeyboardRows = [
+    ['а','б','в','г','ґ','д','е','є','ж','з'],
+    ['и','і','ї','й','к','л','м','н','о','п'],
+    ['р','с','т','у','ф','х','ц','ч','ш','щ'],
+    ['ь','ю','я']
+  ];
+
+  function renderKeyboard() {
+    const holder = document.getElementById('keyboardRows');
+    if (!holder) return;
+    holder.innerHTML = '';
+    ukrainianKeyboardRows.forEach((row) => {
+      const rowEl = document.createElement('div');
+      rowEl.className = 'keyboard-row';
+      row.forEach((letter) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        const char = keyboardUppercase ? letter.toUpperCase() : letter;
+        button.textContent = char;
+        button.addEventListener('click', () => insertChar(char));
+        rowEl.appendChild(button);
+      });
+      holder.appendChild(rowEl);
+    });
+    const controlRow = document.createElement('div');
+    controlRow.className = 'keyboard-row';
+    const shiftButton = document.createElement('button');
+    shiftButton.type = 'button';
+    shiftButton.className = 'keyboard-wide';
+    shiftButton.textContent = keyboardUppercase ? 'а/А' : 'А/а';
+    shiftButton.addEventListener('click', toggleKeyboardCase);
+    controlRow.appendChild(shiftButton);
+    const spaceButton = document.createElement('button');
+    spaceButton.type = 'button';
+    spaceButton.className = 'keyboard-wide';
+    spaceButton.textContent = 'пробіл';
+    spaceButton.addEventListener('click', () => insertChar(' '));
+    controlRow.appendChild(spaceButton);
+    ['.', ',', '?', '!', '’', '-'].forEach((symbol) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = symbol;
+      button.addEventListener('click', () => insertChar(symbol));
+      controlRow.appendChild(button);
+    });
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.className = 'keyboard-wide';
+    deleteButton.textContent = '⌫';
+    deleteButton.addEventListener('click', deleteChar);
+    controlRow.appendChild(deleteButton);
+    holder.appendChild(controlRow);
+  }
+
+  function setActiveTextField(el) { activeTextField = el; }
+  function toggleKeyboard() {
+    const panel = document.getElementById('keyboardPanel');
+    if (!panel) return;
+    panel.classList.toggle('open');
+  }
+  function toggleKeyboardCase() { keyboardUppercase = !keyboardUppercase; renderKeyboard(); }
+  function insertChar(char) {
+    if (!activeTextField) return;
+    const start = activeTextField.selectionStart ?? activeTextField.value.length;
+    const end = activeTextField.selectionEnd ?? activeTextField.value.length;
+    const value = activeTextField.value;
+    activeTextField.value = value.slice(0, start) + char + value.slice(end);
+    activeTextField.focus();
+    activeTextField.selectionStart = activeTextField.selectionEnd = start + char.length;
+    activeTextField.dispatchEvent(new Event('input'));
+  }
+  function deleteChar() {
+    if (!activeTextField) return;
+    const start = activeTextField.selectionStart ?? activeTextField.value.length;
+    const end = activeTextField.selectionEnd ?? activeTextField.value.length;
+    const value = activeTextField.value;
+    if (start !== end) {
+      activeTextField.value = value.slice(0, start) + value.slice(end);
+      activeTextField.selectionStart = activeTextField.selectionEnd = start;
+    } else if (start > 0) {
+      activeTextField.value = value.slice(0, start - 1) + value.slice(end);
+      activeTextField.selectionStart = activeTextField.selectionEnd = start - 1;
+    }
+    activeTextField.focus();
+    activeTextField.dispatchEvent(new Event('input'));
+  }
+  renderKeyboard();
+</script>
+
+</body>
+</html>
